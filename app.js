@@ -1,13 +1,31 @@
 // load math.js
 var math = require('mathjs');
 
-// load express
+// load server logging
 var morgan  = require('morgan');
+
+// load express 
 var express = require('express');
 var app     = express();
 var server  = require('http').createServer(app);
 var port    = process.env.PORT || 3000;
 var router  = express.Router();
+
+// setup sass
+var sassMiddleware = require('node-sass-middleware');
+
+// Setup SASS directories
+var path = require('path');
+
+app.use(sassMiddleware({
+    src: __dirname + '/scss', 
+    dest: __dirname + '/public/stylesheets', 
+    debug: true, 
+    outputStyle: 'compressed' 
+  }),
+  // The static middleware must come after the sass middleware
+  express.static(path.join(__dirname, 'public'))
+)
 
 app.set('views', './views');
 app.set('view engine', 'jade');
