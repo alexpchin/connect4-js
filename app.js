@@ -1,5 +1,7 @@
-// load math.js
-var math = require('mathjs');
+// Watchify with browserify
+var watchify = require('watchify');
+var fromArgs = require('watchify/bin/args');
+// watchify public/javascript/client.js -o public/javascript/bundle.js
 
 // load server logging
 var morgan  = require('morgan');
@@ -49,3 +51,4 @@ console.log('Server started on ' + port);
 
 // Integrate socket
 var io = require('socket.io')(server);
+
