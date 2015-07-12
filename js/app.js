@@ -1,7 +1,8 @@
 (function(){
+  "use strict";
+
   var num_col = 7,
       num_row = 6,
-      num_squares = num_col*num_row,
       color = "red",
       array,
       $message,
@@ -119,7 +120,7 @@
       if (current === next) {
         count++
         if (count === 4) {
-          $message.html(color.substring(0,1).toLocaleUpperCase() + color.substring(1) + " WINS");
+          $message.text(color.substring(0,1).toLocaleUpperCase() + color.substring(1) + " WINS");
           over = true;
           return true;
         }
@@ -133,7 +134,9 @@
   checkForWin = function(col, row, color) {
     var count = 1;
     $.each(directions, function(key, value) {
-      compassSearch(col, row, value, count)
+      if (compassSearch(col, row, value, count)) {
+        return true
+      }
     });
   },
 
