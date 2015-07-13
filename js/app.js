@@ -31,7 +31,8 @@
     $('body').append("<h1 class='animated fadeInDown'>Connect4</h1>");
     $board = $("<div id='board' class='animated fadeInUpBig'></div>").appendTo('body').each(function(){
       $board = $('#board');
-      $message = $('body').append('<h2></h2>');
+      $('body').append('<h2></h2>');
+      $message = $('h2');
       createColumns(function(){
         createSquares(bindEvents)
       });
@@ -62,7 +63,9 @@
   },
 
   createSquares = function(callback) {
-    var columns = $board.children(".column");
+    var columns = $board.children(".column"),
+        i = 0,
+        r = 0;
 
     for (i = num_col-1; i >= 0; i--) {
       for (r = num_row-1; r >= 0; r--) { 
@@ -112,7 +115,8 @@
   compassSearch = function(col, row, value, count) {
     var current = array[col][row],
         next_col = col + value[0],
-        next_row = row + value[1];
+        next_row = row + value[1],
+        next;
         
     if (array[next_col] !== undefined){
       next = array[next_col][next_row];
@@ -129,7 +133,7 @@
         return false;
       } 
     } 
-  }
+  },
 
   checkForWin = function(col, row, color) {
     var count = 1;
